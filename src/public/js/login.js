@@ -1,4 +1,4 @@
-const URL_SERVER = 'https://node-sockets-app-436eaf2e64cb.herokuapp.com';
+const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
 // const URL_SERVER = 'http://localhost:3000';
 
 const formLogin = document.getElementById('formLogin');
