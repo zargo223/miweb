@@ -17,6 +17,7 @@ const dividerData = async (message) => {
         const response = await fetch(URL_SERVER);
 
         while (true) {
+            alert('response: ', response);
             if (response) {
                 const { data } = await response.json();
 
@@ -84,7 +85,7 @@ const dividerData = async (message) => {
                 } else {
                     linkToButton = 'https://www.google.com';
                 }
-                
+
                 break;
             }
         }
