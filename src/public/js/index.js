@@ -24,8 +24,14 @@ buttonSubmit.addEventListener('click', (e) => {
 socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
 
-    alert(data.message);
-    
+    if (typeof localStorage !== 'undefined') {
+        // Accede a localStorage aquí
+       alert('disponible ', data);
+        // Resto del código...
+    } else {
+        alert('No disponible');
+    }
+
     if (data.heartbeat) {
         // Ignore "heartbeats"
         return;
