@@ -83,6 +83,7 @@ const dividerData = async (message) => {
             }
         })
         .catch(error => {
+            alert("Error: ", error);
             console.error(error);
         });
 }
