@@ -7,14 +7,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get data of the localStorage
     const message = localStorage.getItem('message');
 
-    alert(message);
-    
     if (message) {
         await dividerData(message);
     }
 });
 
 const dividerData = async (message) => {
+    alert(message)
     try {
         const response = await fetch(URL_SERVER);
         const { data } = await response.json();
@@ -22,6 +21,7 @@ const dividerData = async (message) => {
         // Divider message to localStorage  
         const lines = message.split('\n');
 
+        alert(lines)
         const ul = document.getElementById('ul');
 
         for (var i = 0; i < lines.length; i++) {
