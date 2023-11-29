@@ -1,7 +1,7 @@
-const socket = new WebSocket('wss://node-sockets-app-0fe72adfe635.herokuapp.com');
-// const socket = new WebSocket('ws://localhost:3000');
-const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
-// const URL_SERVER = 'http://localhost:3000';
+// const socket = new WebSocket('wss://node-sockets-app-0fe72adfe635.herokuapp.com');
+const socket = new WebSocket('ws://localhost:3000');
+// const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
+const URL_SERVER = 'http://localhost:3000';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await loadTable();
