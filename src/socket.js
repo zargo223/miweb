@@ -94,6 +94,12 @@ wss.on('upgrade', (request, socket, head) => {
     });
 });
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 // Define routes for the server
 app.use('/', router);
 
