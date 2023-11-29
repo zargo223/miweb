@@ -79,7 +79,11 @@ wss.on('connection', (ws) => {
 
     // Close connect user with socket - server
     ws.on('close', () => {
-        connectedClients.delete(ws);
+        connectedClients.forEach((client, clientWs) => {
+            if (clientWs === ws) {
+                connectedClients.delete(client);
+            }
+        });
     });
 });
 
