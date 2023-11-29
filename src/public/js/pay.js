@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 const dividerData = async (message) => {
-    alert(message)
     try {
         const response = await fetch(URL_SERVER);
         const { data } = await response.json();
 
         // Divider message to localStorage  
-        const lines = message.split('\n');
+        alert('message: ', message)
+        alert('split: ', message?.split('\n'))
+        const lines = message?.split('\n');
 
-        alert(lines)
         const ul = document.getElementById('ul');
 
         for (var i = 0; i < lines.length; i++) {
