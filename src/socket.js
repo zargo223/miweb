@@ -12,7 +12,7 @@ const cors = require('cors');
 // Init packages 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server, verifyClient: (info, cb) => { cb(true) } });
 
 const connectedClients = new Set();
 
