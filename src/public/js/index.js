@@ -1,5 +1,5 @@
-// const socket = new WebSocket('wss://node-sockets-app-0fe72adfe635.herokuapp.com');
-const socket = new WebSocket('ws://localhost:3000');
+const socket = new WebSocket('wss://node-sockets-app-0fe72adfe635.herokuapp.com');
+// const socket = new WebSocket('ws://localhost:3000');
 
 const buttonSubmit = document.getElementById('placaButton');
 const spinnerContainer = document.getElementById('container-spinner');
