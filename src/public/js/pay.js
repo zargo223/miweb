@@ -1,4 +1,4 @@
-const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com/links';
+const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
 // const URL_SERVER = 'http://localhost:3000/links';
 
 let linkToButton = '';
@@ -12,12 +12,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
-const dividerData = (message) => {
+const dividerData = async (message) => {
     try {
-        // const response = await fetch(URL_SERVER);
-        
-        // const { data } = await response.json();
-
         // Divider message to localStorage  
         const lines = message?.split('\n');
 
@@ -56,25 +52,28 @@ const dividerData = (message) => {
 
         let linkToBuy;
 
-        // if (lines[34]) {
-        //     document.getElementById('valuePay').innerHTML = lines[34].trim();
-        //     document.getElementById('valuePayHidden').innerHTML = lines[34].trim();
+        const response = await fetch(`${URL_SERVER}/links`);
+        const { data } = await response.json();
 
-        //     // Get data for value to pay
-        //     const valueBuy = lines[34].split('$')[1].trim();
+        if (lines[34]) {
+            document.getElementById('valuePay').innerHTML = lines[34].trim();
+            document.getElementById('valuePayHidden').innerHTML = lines[34].trim();
 
-        //     // Convert to number value to pay
-        //     linkToBuy = data.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
-        // } else {
-        //     document.getElementById('valuePay').innerHTML = lines[33].trim();
-        //     document.getElementById('valuePayHidden').innerHTML = lines[33].trim();
+            // Get data for value to pay
+            const valueBuy = lines[34].split('$')[1].trim();
 
-        //     // Get data for value to pay
-        //     const valueBuy = lines[33].split('$')[1].trim();
+            // Convert to number value to pay
+            linkToBuy = data.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
+        } else {
+            document.getElementById('valuePay').innerHTML = lines[33].trim();
+            document.getElementById('valuePayHidden').innerHTML = lines[33].trim();
 
-        //     // Convert to number value to pay
-        //     linkToBuy = data.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
-        // }
+            // Get data for value to pay
+            const valueBuy = lines[33].split('$')[1].trim();
+
+            // Convert to number value to pay
+            linkToBuy = data.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
+        }
 
         // Assign link to button
         if (linkToBuy.length > 0) {
