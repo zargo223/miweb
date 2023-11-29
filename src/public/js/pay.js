@@ -17,7 +17,10 @@ const dividerData = async (message) => {
         const response = await fetch(URL_SERVER);
 
         while (true) {
-            alert('response: ', response);
+            alert('response: ', response !== '');
+            alert('response: ', response !== null);
+            alert('response: ', response === null);
+            alert('response: ', response === '');
             if (response) {
                 const { data } = await response.json();
 
