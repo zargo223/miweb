@@ -13,7 +13,7 @@ const router = Router();
 
 const DATA_FILE = path.join(__dirname, '../db/data.json');
 
-let linksData = loadData();
+let linksData = await loadData();
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -61,7 +61,7 @@ router.post('/links', verifyToken, (req, res) => {
     }
 })
 
-router.put('/links/:id', verifyToken, (req, res) => {
+router.put('/links/:id', verifyToken, async (req, res) => {
     const id = req.params.id;
     const { valueLink, link } = req.body;
 
@@ -70,18 +70,18 @@ router.put('/links/:id', verifyToken, (req, res) => {
     if (linkToUpdate) {
         linkToUpdate.valueLink = valueLink;
         linkToUpdate.link = link;
-        saveData(linksData);
+        await saveData(linksData);
         res.json({ status: 201, message: "Link updated" });
     } else {
         res.json({ status: 400, message: "Error to updated link" });
     }
 });
 
-router.delete('/links/:id', verifyToken, (req, res) => {
+router.delete('/links/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id;
         linksData = linksData.filter(link => link.id !== id);
-        saveData(linksData);
+        await saveData(linksData);
         res.json({ status: 201, message: "Link deleted" });
     } catch (error) {
         res.json({ status: 400, message: "Error to deleted link" });
@@ -105,12 +105,12 @@ router.post('/login', (req, res) => {
     }
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', async (req, res) => {
     const clientIP = req.header('x-forwarded-for') || req.connection.remoteAddress;
 
     res.clearCookie('token');
 
-    deleteDataAuth(clientIP);
+    await deleteDataAuth(clientIP);
     
     res.status(201).json({ success: true, message: 'Logout successful' });
 });

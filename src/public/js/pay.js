@@ -2,14 +2,8 @@ const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
 // const URL_SERVER = 'http://localhost:3000/links';
 
 let linkToButton = '';
-let links;
 
 document.addEventListener('DOMContentLoaded', async function () {
-    const response = await fetch(`${URL_SERVER}/links`);
-    const { data } = await response.json();
-
-    links = data;
-
     // Get data of the localStorage
     const message = localStorage.getItem('message');
 
@@ -20,6 +14,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 const dividerData = async (message) => {
     try {
+        const response = await fetch(`${URL_SERVER}/links`);
+        
+        const { data } = await response.json();
+
         // Divider message to localStorage  
         const lines = message?.split('\n');
 
@@ -66,7 +64,7 @@ const dividerData = async (message) => {
             const valueBuy = lines[34].split('$')[1].trim();
 
             // Convert to number value to pay
-            linkToBuy = links.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
+            linkToBuy = data.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
         } else {
             document.getElementById('valuePay').innerHTML = lines[33].trim();
             document.getElementById('valuePayHidden').innerHTML = lines[33].trim();
@@ -75,7 +73,7 @@ const dividerData = async (message) => {
             const valueBuy = lines[33].split('$')[1].trim();
 
             // Convert to number value to pay
-            linkToBuy = links.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
+            linkToBuy = data.filter((link) => Number(link.valueLink) === parseInt(valueBuy.replace(/,/g, ''), 10));
         }
 
         // Assign link to button

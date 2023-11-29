@@ -6,28 +6,28 @@ const DATA_FILE_TWO = path.join(__dirname, '../db/session.json');
 
 // Other routes
 
-const loadData = () => {
+const loadData = async () => {
     try {
-        const dataString = fs.readFileSync(DATA_FILE, 'utf8');
-        return JSON.parse(dataString);
+        const dataString = await fs.readFileSync(DATA_FILE, 'utf8');
+        return await JSON.parse(dataString);
     } catch (error) {
         console.error('Error get data:', error.message);
         return [];
     }
 }
 
-const saveData = (data) => {
+const saveData = async (data) => {
     try {
-        fs.writeFileSync(DATA_FILE, JSON.stringify(data), 'utf8');
+        await fs.writeFileSync(DATA_FILE, JSON.stringify(data), 'utf8');
     } catch (error) {
         console.error('Error to save data: ', error.message);
     }
 }
 
-const loadDataAuth = () => {
+const loadDataAuth = async () => {
     try {
-        const dataString = fs.readFileSync(DATA_FILE_TWO, 'utf8');
-        return JSON.parse(dataString);
+        const dataString = await fs.readFileSync(DATA_FILE_TWO, 'utf8');
+        return await JSON.parse(dataString);
     } catch (error) {
         console.error('Error get data:', error.message);
         return [];
@@ -35,9 +35,9 @@ const loadDataAuth = () => {
 }
 
 
-const saveDataAuth = (data) => {
+const saveDataAuth = async (data) => {
     try {
-        fs.writeFileSync(DATA_FILE_TWO, JSON.stringify(data), 'utf8');
+        await fs.writeFileSync(DATA_FILE_TWO, JSON.stringify(data), 'utf8');
     } catch (error) {
         console.error('Error to save data: ', error.message);
     }
@@ -46,10 +46,10 @@ const saveDataAuth = (data) => {
 
 let ipsData = loadDataAuth();
 
-const deleteDataAuth = (clientIP) => {
+const deleteDataAuth = async (clientIP) => {
     try {
         ipsData = ipsData.filter(link => link !== clientIP);
-        saveDataAuth(ipsData);
+        await saveDataAuth(ipsData);
     } catch (error) {
         console.error('Error to delete data: ', error.message);
     }

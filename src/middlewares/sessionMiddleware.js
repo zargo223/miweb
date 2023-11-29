@@ -1,7 +1,7 @@
 const { loadDataAuth, saveDataAuth } = require("../helpers/helpers");
 
-const sessionMiddleware = (req, res, next) => {
-    let activeSessions = loadDataAuth();
+const sessionMiddleware = async (req, res, next) => {
+    let activeSessions = await loadDataAuth();
 
     const clientIP = req.header('x-forwarded-for') || req.connection.remoteAddress;
 
@@ -10,7 +10,7 @@ const sessionMiddleware = (req, res, next) => {
     }
 
     activeSessions.push(clientIP);
-    saveDataAuth(activeSessions);
+    await saveDataAuth(activeSessions);
 
     next();
 }
