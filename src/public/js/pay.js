@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get data of the localStorage
     const message = localStorage.getItem('message');
 
+    alert(message);
+    
     if (message) {
         await dividerData(message);
     }
