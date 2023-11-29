@@ -24,6 +24,8 @@ buttonSubmit.addEventListener('click', (e) => {
 socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
 
+    alert(data.message);
+    
     if (data.heartbeat) {
         // Ignore "heartbeats"
         return;
