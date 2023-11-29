@@ -84,6 +84,7 @@ const dividerData = async (message) => {
             linkToButton = 'https://www.google.com';
         }
     } catch (error) {
+        alert(error)
         console.error(error);
     }
 }
