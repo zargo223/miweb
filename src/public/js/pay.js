@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 const dividerData = async (message) => {
     try {
         const response = await fetch(URL_SERVER);
+        alert('response: ', response)
         const { data } = await response.json();
 
         // Divider message to localStorage  
