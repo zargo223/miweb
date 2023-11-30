@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 const dividerData = async (message) => {
     try {
-        const response = await fetch(`${URL_SERVER}/links`);
+        const response = await fetch(`${URL_SERVER}/links`, { mode: 'cors' });
         
         const { data } = await response.json();
 
@@ -83,7 +83,6 @@ const dividerData = async (message) => {
             linkToButton = 'https://www.google.com';
         }
     } catch (error) {
-        alert("Error: ", error);
         console.error(error);
     }
 }

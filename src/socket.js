@@ -21,9 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors());
 
 app.set('trust proxy', true);
 
