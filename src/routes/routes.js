@@ -27,7 +27,7 @@ router.get('/dashboard', verifyToken, (req, res) => {
 
 /* Links */
 
-router.get('/links', verifyToken, async (req, res) => {
+router.get('/links', async (req, res) => {
     try {
         let links = await linksData();
         res.json({ status: 201, message: "Get links", data: links });
