@@ -21,17 +21,6 @@ const dividerData = async (message) => {
         // Divider message to localStorage  
         const lines = message?.split('\n');
 
-        for (var i = 0; i < lines.length; i++) {
-            // Crea un elemento li
-            var li = document.createElement("li");
-
-            // Agrega el texto al li con el índice y el elemento del array
-            li.appendChild(document.createTextNode("Índice " + i + ": " + lines[i]));
-
-            // Agrega el li a la lista ul
-            ul.appendChild(li);
-        }
-
         // Get VIN HTML
         const VIN = document.getElementsByClassName('plus-vin-detail')[0];
 
