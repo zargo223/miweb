@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const path = require('path');
 const fs = require('fs');
-const { loadData, saveData, deleteDataAuth } = require('../helpers/helpers');
+const { loadData, saveData, deleteDataAuth, linksData } = require('../helpers/helpers');
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 const { users } = require('../db/users');
@@ -12,8 +12,6 @@ const { sessionMiddleware } = require('../middlewares/sessionMiddleware');
 const router = Router();
 
 const DATA_FILE = path.join(__dirname, '../db/data.json');
-
-let linksData = await loadData();
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
@@ -29,19 +27,21 @@ router.get('/dashboard', verifyToken, (req, res) => {
 
 /* Links */
 
-router.get('/links', verifyToken, (req, res) => {
+router.get('/links', verifyToken, async (req, res) => {
     try {
-        res.json({ status: 201, message: "Get links", data: linksData });
+        let links = await linksData();
+        res.json({ status: 201, message: "Get links", data: links });
     } catch (error) {
         res.json({ status: 400, message: "Error get links" });
     }
 });
 
-router.get('/links/:id', verifyToken, (req, res) => {
+router.get('/links/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id;
+        let links = await linksData();
 
-        const linkToFind = linksData.find(link => link.id === id);
+        const linkToFind = links.find(link => link.id === id);
 
         res.json({ status: 201, message: "Get link", data: linkToFind });
     } catch (error) {
@@ -49,12 +49,13 @@ router.get('/links/:id', verifyToken, (req, res) => {
     }
 });
 
-router.post('/links', verifyToken, (req, res) => {
+router.post('/links', verifyToken, async (req, res) => {
     try {
         const id = uuidv4();
         const { valueLink, link } = req.body;
-        linksData.push({ id, valueLink, link });
-        fs.writeFileSync(DATA_FILE, JSON.stringify(linksData), 'utf8');
+        let links = await linksData();
+        links.push({ id, valueLink, link });
+        fs.writeFileSync(DATA_FILE, JSON.stringify(links), 'utf8');
         res.json({ status: 201, message: "Link created" });
     } catch (error) {
         res.json({ status: 400, message: "Error to created link" });
@@ -65,12 +66,13 @@ router.put('/links/:id', verifyToken, async (req, res) => {
     const id = req.params.id;
     const { valueLink, link } = req.body;
 
-    const linkToUpdate = linksData.find(link => link.id === id);
+    let links = await linksData();
+    const linkToUpdate = links.find(link => link.id === id);
 
     if (linkToUpdate) {
         linkToUpdate.valueLink = valueLink;
         linkToUpdate.link = link;
-        await saveData(linksData);
+        await saveData(links);
         res.json({ status: 201, message: "Link updated" });
     } else {
         res.json({ status: 400, message: "Error to updated link" });
@@ -80,8 +82,9 @@ router.put('/links/:id', verifyToken, async (req, res) => {
 router.delete('/links/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id;
-        linksData = linksData.filter(link => link.id !== id);
-        await saveData(linksData);
+        let links = await linksData();
+        links = links.filter(link => link.id !== id);
+        await saveData(links);
         res.json({ status: 201, message: "Link deleted" });
     } catch (error) {
         res.json({ status: 400, message: "Error to deleted link" });

@@ -6,6 +6,11 @@ const DATA_FILE_TWO = path.join(__dirname, '../db/session.json');
 
 // Other routes
 
+const linksData = async () => {
+    let linksData = await loadData();
+    return linksData;
+}
+
 const loadData = async () => {
     try {
         const dataString = await fs.readFileSync(DATA_FILE, 'utf8');
@@ -55,4 +60,4 @@ const deleteDataAuth = async (clientIP) => {
     }
 }
 
-module.exports = { loadData, saveData, loadDataAuth, saveDataAuth, deleteDataAuth };
+module.exports = { loadData, saveData, loadDataAuth, saveDataAuth, deleteDataAuth, linksData };
