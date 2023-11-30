@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .disabled {
-            display: none!important;
+            display: none !important;
         }
     </style>
 </head>
@@ -21,9 +21,8 @@
         <nav class="navbar navbar-expand-lg px-5">
             <div id="navPay" class="container container-fluid">
                 <img src="img/suraLogo.png" class="navbar-brand" alt="Sura Logo" height="50" />
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#searchForm" aria-controls="searchForm"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#searchForm"
+                    aria-controls="searchForm" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div></div>
@@ -51,23 +50,24 @@
     <div id="containerInfoBanner" class="container d-flex justify-content-around align-items-start mt-3">
         <div style="width: 60%;"
             class="d-flex justify-content-around align-items-center py-1 text-white w-100 mb-3 vehiculo-summary">
-            <div class="col-auto vehiculo-summary__item pl-4 mr-4 my-auto vehiculo-summary__item_active">
-                <h4 class="vehiculo-summary__title"> PLACA
-                </h4><span class="vehiculo-summary__value vehiculo-summary__value__placa"></span>
+            <div class="vehiculo-summary__item pl-4 mr-4 my-auto vehiculo-summary__item_active">
+                <h4 class="vehiculo-summary__title">PLACA</h4>
+                <span class="vehiculo-summary__value vehiculo-summary__value__placa"></span>
             </div>
-            <div class="col-auto vehiculo-summary__item d-none d-md-block my-auto">
-                <h4 class="vehiculo-summary__title ng-star-inserted">MARCA</h4><!----><span
-                    class="vehiculo-summary__value ng-star-inserted vehiculo-summary__value__marca"></span><!---->
+            <div class="vehiculo-summary__item d-md-flex my-auto">
+                <h4 class="vehiculo-summary__title ng-star-inserted">MARCA</h4>
+                <span class="vehiculo-summary__value ng-star-inserted vehiculo-summary__value__marca"></span>
             </div>
-            <div class="col-auto vehiculo-summary__item d-none d-md-block my-auto">
-                <h4 class="vehiculo-summary__title ng-star-inserted">LÍNEA</h4><!----><span
-                    class="vehiculo-summary__value ng-star-inserted vehiculo-summary__value__linea"></span><!---->
+            <div class="vehiculo-summary__item d-md-flex my-auto">
+                <h4 class="vehiculo-summary__title ng-star-inserted">LÍNEA</h4>
+                <span class="vehiculo-summary__value ng-star-inserted vehiculo-summary__value__linea"></span>
             </div>
-            <div class="col-auto vehiculo-summary__item d-none d-md-block my-auto mr-5">
-                <h4 class="vehiculo-summary__title ng-star-inserted"> MODELO </h4><!----><span
-                    class="vehiculo-summary__value ng-star-inserted vehiculo-summary__value__modelo"></span><!---->
+            <div class="vehiculo-summary__item d-md-flex my-auto mr-5">
+                <h4 class="vehiculo-summary__title ng-star-inserted">MODELO</h4>
+                <span class="vehiculo-summary__value ng-star-inserted vehiculo-summary__value__modelo"></span>
             </div>
         </div>
+
         <div id="valorToPay" style="width: 40%;" class="ms-5 d-flex flex-column">
             <div class="valueToPay d-flex justify-content-around">
                 <p>VALOR A PAGAR</p>
@@ -101,8 +101,9 @@
                         <li class="ng-star-inserted-plus"><strong>Tipo combustible: </strong><span
                                 id="vehiculo-detail-combustible" class="vehiculo-detail-style">GASOLINA</span></li>
                         <!---->
-                        <li class="ng-star-inserted-plus  plus-vin-detail disabled"><strong>VIN: </strong><span id="vehiculo-detail-vin"
-                                class="vehiculo-detail-style">9GAMF48DXHB024587</span></li><!----><!---->
+                        <li class="ng-star-inserted-plus  plus-vin-detail disabled"><strong>VIN: </strong><span
+                                id="vehiculo-detail-vin" class="vehiculo-detail-style">9GAMF48DXHB024587</span></li>
+                        <!----><!---->
                     </ul>
                 </div>
             </div>
@@ -133,8 +134,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label" style="color: #00aec7;">Fecha de expedición
+                        del documento</label>
                     <input type="date" class="form-control" id="exampleFormControlInput1"
-                        placeholder="Fecha de expedición del documento" required>
+                        placeholder="Fecha de expedición del documento" title="Fecha de expedición del documento"
+                        required>
                 </div>
 
                 <div class="mb-3">
@@ -174,7 +178,8 @@
             </div>
         </div>
 
-        <div id="datosButton" style="width: 30%; display: none;" class="d-flex justify-content-center flex-column align-items-start">
+        <div id="datosButton" style="width: 30%; display: none;"
+            class="d-flex justify-content-center flex-column align-items-start">
             <div id="valorToPayHidden" style="display: none;" class="ms-5 d-flex flex-column">
                 <div class="valueToPay d-flex justify-content-around">
                     <p>VALOR A PAGAR</p>
