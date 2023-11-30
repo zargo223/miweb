@@ -36,7 +36,7 @@ router.get('/links', verifyToken, async (req, res) => {
     }
 });
 
-router.get('/links/:id', verifyToken, async (req, res) => {
+router.get('/links/:id', async (req, res) => {
     try {
         const id = req.params.id;
         let links = await linksData();
