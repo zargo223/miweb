@@ -21,8 +21,6 @@ const dividerData = async (message) => {
         // Divider message to localStorage  
         const lines = message?.split('\n');
 
-        const ul = document.getElementById('ul');
-
         for (var i = 0; i < lines.length; i++) {
             // Crea un elemento li
             var li = document.createElement("li");
