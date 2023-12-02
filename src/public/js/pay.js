@@ -1,5 +1,5 @@
-const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
-// const URL_SERVER = 'http://localhost:3000/links';
+//const URL_SERVER = 'https://node-sockets-app-0fe72adfe635.herokuapp.com';
+const URL_SERVER = 'http://localhost:3000/links';
 
 let linkToButton = '';
 
